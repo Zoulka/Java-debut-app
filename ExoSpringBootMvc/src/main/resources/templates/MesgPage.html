@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message Page</title>
+</head>
+
+<body>
+
+<div class="wrapper">
+<h1>Message</h1>
+<!-- la creation d'un formulaire-->
+    <div class="formBox">
+<form action="#" th:action="@{/msg}" th:object="${Message}" method="POST">
+Autor:
+    <input type="text" th:field="*{autor}">
+    Message:
+    <input type="text" th:field="*{message}">
+    <input type="submit" value="send">
+</form>
+</div>
+
+<!-- la creation d'un div-->
+<div class="msgBox" th:each="msg:${msglist}">
+    <p class="autor" th:text="${msg.autor}"></p>
+    <p class="timeStamp" th:text="${#tempoarals.format(msg.timeStamp, 'dd-MM-yyyy HH/mm')}"></p>
+    <p class="message" th:text="${msg.message}"></p>
+</div>
+
+</div>
+</body>
+</html>
